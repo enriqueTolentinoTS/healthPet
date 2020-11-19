@@ -1,0 +1,7 @@
+{
+  "name": "healthPet",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
