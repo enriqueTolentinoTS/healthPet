@@ -5,6 +5,9 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
+  IonSegment,
+  IonSegmentButton,
+  IonLabel,
 } from "@ionic/react";
 import RegisterPetOwner from "../components/RegisterPetOwner";
 
@@ -16,12 +19,20 @@ const Register = () => {
           <IonTitle>Registro</IonTitle>
         </IonToolbar>
       </IonHeader>
+      <IonToolbar>
+        <IonTitle>¿Quién usará el app?</IonTitle>
+      </IonToolbar>
+      <IonToolbar>
+        <IonSegment value="all" color="primary">
+          <IonSegmentButton value="all">
+            <IonLabel>Mascotas</IonLabel>
+          </IonSegmentButton>
+          <IonSegmentButton value="favorites">
+            <IonLabel>Doctor</IonLabel>
+          </IonSegmentButton>
+        </IonSegment>
+      </IonToolbar>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Registro</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <RegisterPetOwner />
       </IonContent>
     </IonPage>
