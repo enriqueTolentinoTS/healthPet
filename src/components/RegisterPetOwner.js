@@ -34,10 +34,11 @@ const RegisterPetOwner = (props) => {
     if (password !== confirmaPassword) {
       alert("Las contraseñas no coinciden");
     }
-
     const response = await createPetOwner(petOwner);
 
     alert(response.message)
+
+    setPetOwner(initialState);
   };
 
   return (
