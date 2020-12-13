@@ -8,6 +8,7 @@ import {
   IonCol,
   IonButton,
 } from "@ionic/react";
+import {createPetOwner} from "../services/AuthService";
 
 const initialState = {
   nombre: "",
@@ -27,66 +28,82 @@ const RegisterPetOwner = (props) => {
     });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { password, confirmaPassword } = petOwner;
+    if (password !== confirmaPassword) {
+      alert("Las contraseñas no coinciden");
+    }
+
+    const response = await createPetOwner(petOwner);
+
+    alert(response.message)
+  };
+
   return (
-    <IonGrid>
-      <IonRow>
-        <IonCol>
-          <IonItem>
-            <IonLabel position="floating">Nombre completo</IonLabel>
-            <IonInput
-              name="nombre"
-              value={petOwner.nombre}
-              onIonChange={handleChange}
-            ></IonInput>
-          </IonItem>
-        </IonCol>
-      </IonRow>
-      <IonRow>
-        <IonCol>
-          <IonItem>
-            <IonLabel position="floating">Email</IonLabel>
-            <IonInput
-              name="email"
-              value={petOwner.email}
-              onIonChange={handleChange}
-            ></IonInput>
-          </IonItem>
-        </IonCol>
-      </IonRow>
-      <IonRow>
-        <IonCol>
-          <IonItem>
-            <IonLabel position="floating">Contraseña</IonLabel>
-            <IonInput
-              name="password"
-              type="password"
-              value={petOwner.password}
-              onIonChange={handleChange}
-            ></IonInput>
-          </IonItem>
-        </IonCol>
-      </IonRow>
-      <IonRow>
-        <IonCol>
-          <IonItem>
-            <IonLabel position="floating">Confirma contraseña</IonLabel>
-            <IonInput
-              name="confirmaPassword"
-              type="password"
-              value={petOwner.confirmaPassword}
-              onIonChange={handleChange}
-            ></IonInput>
-          </IonItem>
-        </IonCol>
-      </IonRow>
-      <IonRow className="mt-4">
-        <IonCol>
-          <IonButton color="success" expand="block">
-            Success
-          </IonButton>
-        </IonCol>
-      </IonRow>
-    </IonGrid>
+    <form onSubmit={handleSubmit}>
+      <IonGrid>
+        <IonRow>
+          <IonCol>
+            <IonItem>
+              <IonLabel position="floating">Nombre completo</IonLabel>
+              <IonInput
+                type="text"
+                name="nombre"
+                value={petOwner.nombre}
+                onIonChange={handleChange}
+              ></IonInput>
+            </IonItem>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <IonItem>
+              <IonLabel position="floating">Email</IonLabel>
+              <IonInput
+                type="email"
+                name="email"
+                value={petOwner.email}
+                onIonChange={handleChange}
+              ></IonInput>
+            </IonItem>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <IonItem>
+              <IonLabel position="floating">Contraseña</IonLabel>
+              <IonInput
+                name="password"
+                type="password"
+                value={petOwner.password}
+                onIonChange={handleChange}
+              ></IonInput>
+            </IonItem>
+          </IonCol>
+        </IonRow>
+        <IonRow>
+          <IonCol>
+            <IonItem>
+              <IonLabel position="floating">Confirma contraseña</IonLabel>
+              <IonInput
+                name="confirmaPassword"
+                type="password"
+                value={petOwner.confirmaPassword}
+                onIonChange={handleChange}
+              ></IonInput>
+            </IonItem>
+          </IonCol>
+        </IonRow>
+        <IonRow className="mt-4">
+          <IonCol>
+            <IonButton color="success" expand="block" type="submit">
+              Success
+            </IonButton>
+          </IonCol>
+        </IonRow>
+      </IonGrid>
+    </form>
   );
 };
 
